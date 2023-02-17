@@ -1,6 +1,6 @@
-import React, { useState, useEffect } from 'react'
-import Navigation from './navigation'
-import Cookies from 'js-cookie'
+import React, { useState, useEffect } from "react";
+import Navigation from "./navigation";
+import Cookies from "js-cookie";
 // import { useSelector } from 'react-redux';
 
 // import { useDispatch } from "react-redux";
@@ -11,11 +11,9 @@ import Cookies from 'js-cookie'
 // import { API_URI } from "./constants/api.url";
 
 const App = () => {
-
   // const state = useSelector(s => s)
-  const [isLoggedIn, setIsLoggedIn] = useState(false)
-  const [onBoarding, setIsOnBoarding] = useState(false)
-
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [onBoarding, setIsOnBoarding] = useState(false);
 
   // useEffect(() => {
   //   let uid = Cookies.get('uid');
@@ -49,15 +47,11 @@ const App = () => {
   //   }
   // }, [state])
 
-
-
-
   return (
     <>
       <Navigation isLoggedIn={isLoggedIn} onBoarding={onBoarding} />
-
     </>
-  )
-}
+  );
+};
 
-export default App
+export default App;
