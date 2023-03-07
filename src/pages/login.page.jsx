@@ -2,7 +2,7 @@ import React from "react";
 import { Helmet } from "react-helmet";
 import LoginComp from "../components/login/login.comp";
 
-function Login_Page() {
+function LoginPage() {
   return (
     <>
       <Helmet>
@@ -13,4 +13,4 @@ function Login_Page() {
   );
 }
 
-export default Login_Page;
+export default LoginPage;

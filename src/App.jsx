@@ -13,7 +13,7 @@ import Cookies from "js-cookie";
 const App = () => {
   // const state = useSelector(s => s)
   const [isLoggedIn, setIsLoggedIn] = useState(false);
-  const [onBoarding, setIsOnBoarding] = useState(false);
+  const [onBoarding, setIsOnBoarding] = useState(true);
 
   // useEffect(() => {
   //   let uid = Cookies.get('uid');
