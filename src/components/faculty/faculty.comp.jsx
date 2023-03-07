@@ -127,7 +127,7 @@ function FacultyComp() {
               <div className="space-y-8 flex flex-col">
                 <div>
                   <label
-                    for="first_name"
+                    htmlFor="first_name"
                     class="block mb-2 text-sm font-medium text-gray-900">
                     Title
                   </label>
