@@ -37,7 +37,7 @@ function LoginComp() {
         Cookies.set("status", res.data.isComplete);
         Cookies.set("user", res.data.others.userType);
         toast.success(`Login Successful`);
-        navigate("/");
+        navigate("/dashboard");
       })
       .catch((err) => {
         console.log(err);

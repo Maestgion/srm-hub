@@ -13,16 +13,12 @@ import Cookies from "js-cookie";
 function studentOnboarding() {
   const user = useSelector((s) => s.user);
 
-  const [title, setTitle] = useState(null);
   const [department, setDepartment] = useState(null);
   const [year, setYear] = useState(null);
   const [firstName, setFirstName] = useState(null);
   const [lastName, setLastName] = useState(null);
   const [section, setSection] = useState(null);
   const [phone, setPhone] = useState(null);
-  const [leadName, setLeadName] = useState(null);
-  const [leadPhoneNo, setLeadPhoneNo] = useState(null);
-  const [leadRegNo, setLeadRegNo] = useState(null);
   const [regNo, setRegNo] = useState(null);
 
   useEffect(() => {
@@ -35,17 +31,13 @@ function studentOnboarding() {
   const { setUser } = bindActionCreators(actionCreators, dispatch);
   const handleSubmit = () => {
     const data = {
-      title,
-      department,
+      dept: department,
       year,
       firstName,
       lastName,
       section,
       phone,
-      leadName,
-      leadPhoneNo,
-      leadRegNo,
-      email,
+      regNo
     };
     console.log(data);
     toast.custom((t) => (
@@ -113,7 +105,7 @@ function studentOnboarding() {
               <input
                 value={lastName}
                 onChange={(e) => setLastName(e.target.value)}
-                type="date"
+                type="text"
                 name="year"
                 id="year"
                 className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-orange-600 focus:border-orange-600 block w-full p-2.5 focus:ring-1 outline-none"
@@ -130,7 +122,7 @@ function studentOnboarding() {
               <input
                 value={regNo}
                 onChange={(e) => setRegNo(e.target.value)}
-                type="email"
+                type="text"
                 name="regno"
                 id="regno"
                 className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-orange-600 focus:border-orange-600 block w-full p-2.5 focus:ring-1 outline-none"

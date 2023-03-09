@@ -18,13 +18,13 @@ function Navigation({ isLoggedIn, onBoarding, user }) {
     <Router>
       {onBoarding ? (
         <Routes>
-          {user.userType === "club" && (
+          {user?.userType === "club" && (
             <Route path="*" element={<ClubOnboarding />} />
           )}
-          {user.userType === "faculty" && (
+          {user?.userType === "faculty" && (
             <Route path="*" element={<FacultyOnboarding />} />
           )}
-          {user.userType === "student" && (
+          {user?.userType === "student" && (
             <Route path="*" element={<StudentOnboarding />} />
           )}
         </Routes>
@@ -49,7 +49,7 @@ function Navigation({ isLoggedIn, onBoarding, user }) {
                 />
               );
             })}
-          {isLoggedIn && <Route path="*" element={<Navigate to="/" />} />}
+          {isLoggedIn && <Route path="*" element={<Navigate to="/dashboard" />} />}
           {!isLoggedIn && <Route path="*" element={<Navigate to="/login" />} />}
         </Routes>
       )}

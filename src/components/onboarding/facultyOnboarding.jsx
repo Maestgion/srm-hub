@@ -20,9 +20,7 @@ function facultyOnboarding() {
   const [lastName, setLastName] = useState(null);
   const [section, setSection] = useState(null);
   const [phone, setPhone] = useState(null);
-  const [leadName, setLeadName] = useState(null);
-  const [leadPhoneNo, setLeadPhoneNo] = useState(null);
-  const [leadRegNo, setLeadRegNo] = useState(null);
+
   const [regNo, setRegNo] = useState(null);
 
   useEffect(() => {
@@ -36,16 +34,13 @@ function facultyOnboarding() {
   const handleSubmit = () => {
     const data = {
       title,
-      department,
-      facultyType,
+      dept: department,
+      facType: facultyType,
       firstName,
       lastName,
       section,
       phone,
-      leadName,
-      leadPhoneNo,
-      leadRegNo,
-      email,
+      regNo,
     };
     console.log(data);
     toast.custom((t) => (
@@ -56,6 +51,7 @@ function facultyOnboarding() {
             className="classes.toastbtn"
             onClick={() => {
               toast.dismiss(t.id);
+              console.log(data)
               const id = Cookies.get("uid");
               axios
                 .put(`${API_URI}/users/profile/faculty/${id}`, data)
@@ -130,11 +126,11 @@ function facultyOnboarding() {
               <input
                 value={lastName}
                 onChange={(e) => setLastName(e.target.value)}
-                type="date"
+                type="text"
                 name="year"
                 id="year"
                 className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-orange-600 focus:border-orange-600 block w-full p-2.5 focus:ring-1 outline-none"
-                placeholder="name@company.com"
+                placeholder="Gupta"
                 required=""
               />
             </div>
@@ -147,7 +143,7 @@ function facultyOnboarding() {
               <input
                 value={regNo}
                 onChange={(e) => setRegNo(e.target.value)}
-                type="email"
+                type="text"
                 name="regno"
                 id="regno"
                 className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-orange-600 focus:border-orange-600 block w-full p-2.5 focus:ring-1 outline-none"
@@ -215,7 +211,7 @@ function facultyOnboarding() {
               <input
                 value={phone}
                 onChange={(e) => setPhone(e.target.value)}
-                type="text"
+                type="tel"
                 name="phone"
                 id="phone"
                 className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-orange-600 focus:border-orange-600 block w-full p-2.5 focus:ring-1 outline-none"

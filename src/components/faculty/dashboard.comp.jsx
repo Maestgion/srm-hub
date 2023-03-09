@@ -15,7 +15,7 @@ import { CgArrowDown, CgProfile, CgSpinner } from "react-icons/cg";
 import Links from "../student/Links";
 import { Club, Student } from "../utils/comman-components";
 
-function StudentComp() {
+function FacultyComp() {
   const [data, setData] = useState({
     links: [
       {
@@ -145,4 +145,4 @@ function StudentComp() {
   );
 }
 
-export default StudentComp;
+export default FacultyComp;
