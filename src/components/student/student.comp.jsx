@@ -123,7 +123,7 @@ function StudentComp() {
               return <Post post={post} key={index} />;
             })}
           </div>
-          <div className="w-[40%] flex flex-col items-end gap-6 overflow-scroll scrollbar-hidden">
+          <div className="w-96 flex flex-col items-end gap-6 overflow-scroll scrollbar-hidden">
             {data.links.map((link, index) => {
               return <Links link={link} key={index} />;
             })}
