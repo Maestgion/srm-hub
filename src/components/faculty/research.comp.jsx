@@ -4,7 +4,7 @@ import { BsBellFill, BsLaptopFill, BsSearch } from "react-icons/bs";
 import { CgMenuGridR, CgProfile, CgSpinner } from "react-icons/cg";
 import cn from "classnames";
 
-function FacultyProjectsComp() {
+function FacultyResearchComp() {
   const [data, setData] = useState({
     ongoing: [
       {
@@ -107,7 +107,7 @@ function FacultyProjectsComp() {
 
             <div className="text-sm font-medium text-center text-gray-500 border-b border-gray-200">
               <ul className="flex flex-wrap -mb-px">
-                {["New", "Ongoing", "Previous"].map((tab, index) => {
+                {["Ongoing", "Previous"].map((tab, index) => {
                   return (
                     <button
                       className={cn(
@@ -124,53 +124,6 @@ function FacultyProjectsComp() {
               </ul>
             </div>
             {selectedIndex == 0 && (
-              <div className="space-y-8 flex flex-col">
-                <div>
-                  <label
-                    htmlFor="first_name"
-                    className="block mb-2 text-sm font-medium text-gray-900">
-                    Title
-                  </label>
-                  <input
-                    type="text"
-                    id="first_name"
-                    className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-orange-500 focus:ring-1 focus:border-orange-500 block w-full p-2.5 outline-none"
-                    placeholder="Title"
-                    required
-                  />
-                </div>
-                <div>
-                  <label
-                    for="message"
-                    className="block mb-2 text-sm font-medium text-gray-900">
-                    Problem Statement
-                  </label>
-                  <textarea
-                    id="message"
-                    rows="6"
-                    className="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-orange-500 focus:ring-1 focus:border-orange-500 outline-none"
-                    placeholder="Write your problem statement"></textarea>
-                </div>
-                <div>
-                  <label
-                    for="message"
-                    className="block mb-2 text-sm font-medium text-gray-900">
-                    Solution
-                  </label>
-                  <textarea
-                    id="message"
-                    rows="6"
-                    className="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-orange-500 focus:ring-1 focus:border-orange-500 outline-none"
-                    placeholder="Propose your solution"></textarea>
-                </div>
-                <button
-                  type="submit"
-                  className="inline-flex items-center px-5 py-2.5 text-sm font-medium text-center text-white bg-orange-500 rounded-lg focus:ring-1 focus:ring-slate-900 dark:focus:ring-orange-600 hover:bg-orange-600 ml-auto">
-                  Publish post
-                </button>
-              </div>
-            )}
-            {selectedIndex == 1 && (
               <div className="grid grid-cols-2 gap-6">
                 {data.ongoing.map((ongoing) => {
                   return (
@@ -204,7 +157,7 @@ function FacultyProjectsComp() {
                 })}
               </div>
             )}
-            {selectedIndex == 2 && (
+            {selectedIndex == 1 && (
               <div className="flex flex-col gap-6">
                 {data.previous.map((previous) => {
                   return (
@@ -262,4 +215,4 @@ function FacultyProjectsComp() {
   );
 }
 
-export default FacultyProjectsComp;
+export default FacultyResearchComp;
