@@ -1,13 +1,13 @@
 import HomeComp from "../components/home/home.comp";
-import Onboarding from "../components/onboarding/onboarding";
+import Onboarding from "../components/onboarding/studentOnboarding";
 import LoginPage from "../pages/login.page";
 import SignupPage from "../pages/signup.Page";
 
 export const PRIVATE_ROUTES = [
   {
     path: "/",
-    component: <HomeComp />
-  }
+    component: <HomeComp />,
+  },
 ];
 export const PUBLIC_ROUTES = [
   {
