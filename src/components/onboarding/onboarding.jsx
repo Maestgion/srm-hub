@@ -63,8 +63,7 @@ function Onboarding() {
                 .then(res => {
                   console.log("data", res.data)
                   setUser(res.data.profile)
-                  Cookies.set('uid', res.data.uid)
-                  Cookies.set('status', res.data.status)
+                  Cookies.set('uid', res.data.profile._id)
                   toast.success("Account details saved!")
                   navigate('/')
                 }).catch(err => {
