@@ -83,10 +83,10 @@ export function Ongoing({ ongoing }) {
       <DetailsPopover shown={detailShown} setShown={setDetailShown} />
       <a href="#">
         <h5 className="mb-2 text-2xl font-bold tracking-tight text-gray-900">
-          {ongoing?.title}
+          {ongoing?.projectTitle}
         </h5>
       </a>
-      <p className="mb-3 font-normal text-gray-700">{ongoing?.description}</p>
+      <p className="mb-3 font-normal text-gray-700">{ongoing?.problemStatement}</p>
       <div className="flex gap-4 ml-auto">
         <button
           onClick={() => setTeamShown(true)}
@@ -111,16 +111,16 @@ export function Previous({ previous }) {
       <TeamsPopover shown={teamShown} setShown={setTeamShown} />
       <DetailsPopover shown={detailShown} setShown={setDetailShown} />
       <div className="w-full rounded-t-lg h-96 md:h-auto md:w-2/5 md:rounded-none md:rounded-l-lg p-4 justify-between flex flex-col">
-        <p className="mb-3 font-normal text-gray-700">{previous?.feedback}</p>
-        <p className="mb-3 font-normal text-gray-700">{previous?.timeStamp}</p>
+        <p className="mb-3 font-normal text-gray-700">No uniqueness in the given idea. Think something new.</p>
+        <p className="mb-3 font-normal text-gray-700">1678204526107</p>
       </div>
-      <div className="flex flex-col justify-between p-4 leading-normal">
+      <div className="flex flex-col justify-between p-4 leading-normal w-full">
         <div>
           <h5 className="mb-2 text-2xl font-bold tracking-tight text-gray-900 h-16 overflow-hidden overflow-ellipsis">
-            {previous?.title}
+            {previous?.projectTitle}
           </h5>
           <p className="mb-3 font-normal text-gray-700">
-            {previous?.description}
+            {previous?.problemStatement}
           </p>
         </div>
         <div className="flex justify-between">

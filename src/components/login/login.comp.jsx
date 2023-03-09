@@ -36,6 +36,7 @@ function LoginComp() {
         Cookies.set("uid", res.data.uid);
         Cookies.set("status", res.data.isComplete);
         Cookies.set("user", res.data.others.userType);
+        Cookies.set("token", res.data.others.tokens[res.data.others.tokens.length - 1].token);
         toast.success(`Login Successful`);
         navigate("/dashboard");
       })
