@@ -1,13 +1,42 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import Nav from "../nav/nav";
+import axios from "axios"
+import { toast } from "react-hot-toast"
+import { API_URI } from "../../constants/api.url";
 import Onboarding from "../onboarding/onboarding";
 
 function SignupComp() {
   const [email, setEmail] = useState(null);
-  const [department, setDepartment] = useState(null);
+  const [designation, setDesignation] = useState(null);
   const [password, setPassword] = useState("");
+  const [cnfpassword, setCnfpassword] = useState("");
   const [onboarding, setOnboaring] = useState(false);
+
+  const handleSignup = () => {
+    const data = {
+      email,
+      userType: designation,
+      password,
+      cnfPassword: cnfpassword
+    }
+
+    console.log('data ---', data)
+    axios.post(`${API_URI}/users/register`, data)
+      .then(res => {
+        console.log(res.data)
+        if (res.data.success) {
+          toast.success(res.data.status)
+        } else {
+          toast(res.data.status, { icon: "⚠️" })
+        }
+      })
+
+  }
+
+
+
+
 
   return (
     <>
@@ -29,6 +58,8 @@ function SignupComp() {
                   <input
                     type="email"
                     name="email"
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
                     id="email"
                     className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-orange-600 focus:border-orange-600 block w-full p-2.5 focus:ring-1 outline-none"
                     placeholder="name@company.com"
@@ -45,6 +76,25 @@ function SignupComp() {
                     type="password"
                     name="password"
                     id="password"
+                    value={password}
+                    onChange={(e) => setPassword(e.target.value)}
+                    placeholder="••••••••"
+                    className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-orange-600 focus:ring-1 focus:border-orange-600 block w-full p-2.5 outline-none"
+                    required=""
+                  />
+                </div>
+                <div>
+                  <label
+                    htmlFor="password"
+                    className="block mb-2 text-sm font-medium text-gray-900">
+                    Confirm Password
+                  </label>
+                  <input
+                    type="password"
+                    name="password"
+                    id="password"
+                    value={cnfpassword}
+                    onChange={(e) => setCnfpassword(e.target.value)}
                     placeholder="••••••••"
                     className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-orange-600 focus:ring-1 focus:border-orange-600 block w-full p-2.5 outline-none"
                     required=""
@@ -56,18 +106,18 @@ function SignupComp() {
                     className="block mb-2 text-sm font-medium text-gray-900">
                     Designation
                   </label>
-                  <input
-                    type="text"
-                    name="designation"
-                    id="designation"
-                    placeholder="Faculty"
-                    className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-orange-600 focus:ring-1 focus:border-orange-600 block w-full p-2.5 outline-none"
-                    required=""
-                  />
+                  <select onChange={(e) => setDesignation(e.target.value)} id="designation" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5">
+                    <option value="student" selected>Student</option>
+                    <option value="faculty">Faculty</option>
+                    <option value="club">Club</option>
+                    <option value="hod">HOD</option>
+                  </select>
                 </div>
                 <button
                   type="submit"
-                  onClick={() => {
+                  onClick={(e) => {
+                    e.preventDefault()
+                    handleSignup()
                     setOnboaring(true);
                   }}
                   className="w-full text-white bg-orange-500 hover:bg-orange-600 focus:ring-4 focus:outline-none focus:ring-orange-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center">

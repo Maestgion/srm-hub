@@ -3,11 +3,13 @@ import { useDispatch, useSelector } from "react-redux";
 import { bindActionCreators } from "redux";
 import { actionCreators } from "../../state";
 import { useNavigate } from "react-router";
-
+import axios from 'axios'
 import Cookies from "js-cookie";
 import { Link } from "react-router-dom";
 import Nav from "../nav/nav";
 import Onboarding from "../onboarding/onboarding";
+import { API_URI } from "../../constants/api.url";
+import { toast } from "react-hot-toast"
 
 function LoginComp() {
   const [email, setEmail] = useState(null);
@@ -25,17 +27,17 @@ function LoginComp() {
     };
     console.log(data);
     setUser(data);
-    // axios.post(`${API_URI}/auth/login`, data)
-    //   .then(res => {
-    //     console.log(res.data)
-    //     setUser(res.data.data)
-    //     Cookies.set('uid', res.data.data.id)
-    //     toast.success(`Login Successful`)
-    //     navigate('/')
-    //   }).catch(err => {
-    //     console.log(err)
-    //     toast.error(`Login Failed`)
-    //   })
+    axios.post(`${API_URI}/users/login`, data)
+      .then(res => {
+        console.log(res.data)
+        setUser(res.data.data)
+        Cookies.set('uid', res.data.data.id)
+        toast.success(`Login Successful`)
+        navigate('/')
+      }).catch(err => {
+        console.log(err)
+        toast.error(`Login Failed`)
+      })
   };
 
   return (
@@ -67,6 +69,8 @@ function LoginComp() {
                   <input
                     type="email"
                     name="email"
+                    email={email}
+                    onChange={(e) => setEmail(e.target.value)}
                     id="email"
                     className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-orange-600 focus:border-orange-600 block w-full p-2.5 focus:ring-1 outline-none"
                     placeholder="name@company.com"
@@ -83,6 +87,8 @@ function LoginComp() {
                     type="password"
                     name="password"
                     id="password"
+                    value={password}
+                    onChange={(e) => setPassword(e.currentTarget.value)}
                     placeholder="••••••••"
                     className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-orange-600 focus:ring-1 focus:border-orange-600 block w-full p-2.5 outline-none"
                     required=""
@@ -113,8 +119,10 @@ function LoginComp() {
                 </div>
                 <button
                   type="submit"
-                  onClick={() => {
-                    setOnboaring(true);
+                  onClick={(e) => {
+                    e.preventDefault()
+                    handleLogin()
+                    // setOnboaring(true);
                   }}
                   className="w-full text-white bg-orange-500 hover:bg-orange-600 focus:ring-4 focus:outline-none focus:ring-orange-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center">
                   Sign in
