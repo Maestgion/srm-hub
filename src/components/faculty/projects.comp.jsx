@@ -1,8 +1,9 @@
 import { useState } from "react";
-import { AiFillHome, AiFillTrophy } from "react-icons/ai";
+import { AiFillHome, AiFillTrophy, AiOutlineTeam } from "react-icons/ai";
 import { BsBellFill, BsLaptopFill, BsSearch } from "react-icons/bs";
-import { CgMenuGridR, CgProfile, CgSpinner } from "react-icons/cg";
+import { CgComment, CgMenuGridR, CgProfile, CgSpinner } from "react-icons/cg";
 import cn from "classnames";
+import { Ongoing, Previous } from "../utils/comman-components";
 
 function FacultyProjectsComp() {
   const [data, setData] = useState({
@@ -63,7 +64,7 @@ function FacultyProjectsComp() {
 
   return (
     <div className="px-5 py-3 flex gap-4 h-full">
-      <nav className="bg-[#FC8019] rounded-3xl px-2 py-6 flex flex-col gap-20 fill-white text-white items-center h-full">
+      <nav className="bg-orange-500 rounded-3xl px-2 py-6 flex flex-col gap-20 fill-white text-white items-center h-full">
         <div id="logo">
           <a href="/">
             <svg
@@ -110,6 +111,7 @@ function FacultyProjectsComp() {
                 {["New", "Ongoing", "Previous"].map((tab, index) => {
                   return (
                     <button
+                      key={index}
                       className={cn(
                         "inline-block p-4 rounded-t-lg active mr-2 border-b-2",
                         selectedIndex === index
@@ -141,7 +143,7 @@ function FacultyProjectsComp() {
                 </div>
                 <div>
                   <label
-                    for="message"
+                    htmlFor="message"
                     className="block mb-2 text-sm font-medium text-gray-900">
                     Problem Statement
                   </label>
@@ -153,7 +155,7 @@ function FacultyProjectsComp() {
                 </div>
                 <div>
                   <label
-                    for="message"
+                    htmlFor="message"
                     className="block mb-2 text-sm font-medium text-gray-900">
                     Solution
                   </label>
@@ -165,89 +167,23 @@ function FacultyProjectsComp() {
                 </div>
                 <button
                   type="submit"
-                  className="inline-flex items-center px-5 py-2.5 text-sm font-medium text-center text-white bg-orange-500 rounded-lg focus:ring-1 focus:ring-slate-900 dark:focus:ring-orange-600 hover:bg-orange-600 ml-auto">
+                  className="inline-flex items-center px-5 py-2.5 text-sm font-medium text-center text-white bg-orange-500 rounded-lg focus:ring-4 focus:ring-orange-300 hover:bg-orange-600 ml-auto shadow">
                   Publish post
                 </button>
               </div>
             )}
             {selectedIndex == 1 && (
               <div className="grid grid-cols-2 gap-6">
-                {data.ongoing.map((ongoing) => {
-                  return (
-                    <div className="max-w-sm p-6 bg-white border border-gray-200 rounded-lg shadow">
-                      <a href="#">
-                        <h5 className="mb-2 text-2xl font-bold tracking-tight text-gray-900">
-                          {ongoing?.title}
-                        </h5>
-                      </a>
-                      <p className="mb-3 font-normal text-gray-700">
-                        {ongoing?.description}
-                      </p>
-                      <a
-                        href={ongoing?.link}
-                        className="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-orange-600 rounded-lg hover:bg-orange-600 focus:ring-4 focus:outline-none focus:ring-orange-300">
-                        Read more
-                        <svg
-                          aria-hidden="true"
-                          className="w-4 h-4 ml-2 -mr-1"
-                          fill="currentColor"
-                          viewBox="0 0 20 20"
-                          xmlns="http://www.w3.org/2000/svg">
-                          <path
-                            fill-rule="evenodd"
-                            d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z"
-                            clip-rule="evenodd"></path>
-                        </svg>
-                      </a>
-                    </div>
-                  );
-                })}
+                {data.ongoing.map((ongoing, i) => (
+                  <Ongoing key={i} ongoing={ongoing} />
+                ))}
               </div>
             )}
             {selectedIndex == 2 && (
               <div className="flex flex-col gap-6">
-                {data.previous.map((previous) => {
-                  return (
-                    <div className="flex flex-col bg-white border border-gray-200 rounded-lg shadow md:flex-row md:max-w-3xl hover:bg-gray-100 h-52">
-                      <div className="w-full rounded-t-lg h-96 md:h-auto md:w-2/5 md:rounded-none md:rounded-l-lg p-4 justify-between flex flex-col">
-                        <p className="mb-3 font-normal text-gray-700">
-                          {previous?.feedback}
-                        </p>
-                        <p className="mb-3 font-normal text-gray-700">
-                          {previous?.timeStamp}
-                        </p>
-                      </div>
-                      <div className="flex flex-col justify-between p-4 leading-normal">
-                        <div>
-                          <h5 className="mb-2 text-2xl font-bold tracking-tight text-gray-900 h-16 overflow-hidden overflow-ellipsis">
-                            {previous?.title}
-                          </h5>
-                          <p className="mb-3 font-normal text-gray-700">
-                            {previous?.description}
-                          </p>
-                        </div>
-                        <div className="flex justify-between">
-                          <a
-                            href={previous?.link}
-                            className="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-orange-600 rounded-lg hover:bg-orange-600 focus:ring-4 focus:outline-none focus:ring-orange-300">
-                            Read more
-                            <svg
-                              aria-hidden="true"
-                              className="w-4 h-4 ml-2 -mr-1"
-                              fill="currentColor"
-                              viewBox="0 0 20 20"
-                              xmlns="http://www.w3.org/2000/svg">
-                              <path
-                                fill-rule="evenodd"
-                                d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z"
-                                clip-rule="evenodd"></path>
-                            </svg>
-                          </a>
-                        </div>
-                      </div>
-                    </div>
-                  );
-                })}
+                {data.previous.map((previous, i) => (
+                  <Previous key={i} previous={previous} />
+                ))}
               </div>
             )}
           </div>
