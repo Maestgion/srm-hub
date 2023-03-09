@@ -34,6 +34,7 @@ function LoginComp() {
         setUser(res.data.others)
         Cookies.set('uid', res.data.uid)
         Cookies.set('status', res.data.isComplete)
+        Cookies.set('user', res.data.others.userType)
         toast.success(`Login Successful`)
         navigate('/')
       }).catch(err => {

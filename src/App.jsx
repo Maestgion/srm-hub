@@ -23,47 +23,68 @@ const App = () => {
   const { setUser } = bindActionCreators(actionCreators, dispatch);
 
   useEffect(() => {
+
     let uid = Cookies.get('uid');
 
     if (uid != null) {
-      axios.get(`${API_URI}/users/club/single/${uid}`)
-        .then(res => {
-          console.log("user data", res.data)
-          setUser(res.data)
-        }).catch(err => {
-          console.log(err)
-        })
+      if (Cookies.get('user') === 'club') {
+        axios.get(`${API_URI}/users/club/single/${uid}`)
+          .then(res => {
+            console.log("user data", res.data)
+            setUser(res.data)
+          }).catch(err => {
+            console.log(err)
+          })
+      }
+      else if (Cookies.get('user') === 'student') {
+        axios.get(`${API_URI}/users/student/single/${uid}`)
+          .then(res => {
+            console.log("user data", res.data)
+            setUser(res.data)
+          }).catch(err => {
+            console.log(err)
+          })
+      }
+      else {
+        axios.get(`${API_URI}/users/faculty/single/${uid}`)
+          .then(res => {
+            console.log("user data", res.data)
+            setUser(res.data)
+          }).catch(err => {
+            console.log(err)
+          })
+      }
     }
 
   }, [])
-  useEffect(() => {
-    let uid = Cookies.get('uid');
+  // useEffect(() => {
+  //   let uid = Cookies.get('uid');
 
-    if (uid != null) {
-      axios.get(`${API_URI}/users/student/single/${uid}`)
-        .then(res => {
-          console.log("user data", res.data)
-          setUser(res.data)
-        }).catch(err => {
-          console.log(err)
-        })
-    }
+  //   if (uid != null) {
+  //     axios.get(`${API_URI}/users/student/single/${uid}`)
+  //       .then(res => {
+  //         console.log("user data", res.data)
+  //         setUser(res.data)
+  //       }).catch(err => {
+  //         console.log(err)
+  //       })
+  //   }
 
-  }, [])
-  useEffect(() => {
-    let uid = Cookies.get('uid');
+  // }, [])
+  // useEffect(() => {
+  //   let uid = Cookies.get('uid');
 
-    if (uid != null) {
-      axios.get(`${API_URI}/users/faculty/single/${uid}`)
-        .then(res => {
-          console.log("user data", res.data)
-          setUser(res.data)
-        }).catch(err => {
-          console.log(err)
-        })
-    }
+  //   if (uid != null) {
+  //     axios.get(`${API_URI}/users/faculty/single/${uid}`)
+  //       .then(res => {
+  //         console.log("user data", res.data)
+  //         setUser(res.data)
+  //       }).catch(err => {
+  //         console.log(err)
+  //       })
+  //   }
 
-  }, [])
+  // }, [])
 
   useEffect(() => {
     console.log("Redux State", state)

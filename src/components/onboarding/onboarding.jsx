@@ -23,12 +23,12 @@ function Onboarding() {
   const [leadName, setLeadName] = useState(null)
   const [leadPhoneNo, setLeadPhoneNo] = useState(null)
   const [leadRegNo, setLeadRegNo] = useState(null)
-  const [clubEmail, setClubEmail] = useState(null)
+  const [email, setEmail] = useState(null)
 
 
   useEffect(() => {
     if (user)
-      setClubEmail(user.email)
+      setEmail(user.email)
   }, [user])
 
   const dispatch = useDispatch()
@@ -47,7 +47,7 @@ function Onboarding() {
       leadName,
       leadPhoneNo,
       leadRegNo,
-      clubEmail,
+      email,
     }
     console.log(data)
     toast.custom((t) => (
@@ -59,11 +59,12 @@ function Onboarding() {
             onClick={() => {
               toast.dismiss(t.id)
               const id = Cookies.get('uid')
-              axios.post(`${API_URI}/users/club/profile/${id}`, data)
+              axios.put(`${API_URI}/users/profile/club/${id}`, data)
                 .then(res => {
                   console.log("data", res.data)
-                  setUser(res.data)
+                  setUser(res.data.profile)
                   Cookies.set('uid', res.data.uid)
+                  Cookies.set('status', res.data.status)
                   toast.success("Account details saved!")
                   navigate('/')
                 }).catch(err => {
@@ -147,8 +148,8 @@ function Onboarding() {
                 Club Email
               </label>
               <input
-                value={clubEmail}
-                onChange={(e) => setClubEmail(e.target.value)}
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
                 type="email"
                 name="email"
                 id="email"
