@@ -9,11 +9,14 @@ import {
   BsSearch,
 } from "react-icons/bs";
 import { CgMenuGridR, CgProfile, CgSpinner } from "react-icons/cg";
+import StudentPopover from "../popover/student.popover";
 import { Student } from "../utils/comman-components";
 
 function FacultyStudentsComp() {
   const [data, setData] = useState({});
   const [loading, setLoading] = useState(true);
+  const [shown, setShown] = useState(false);
+  const [popupData, setPopupData] = useState({});
 
   const greeting = new Date().getHours() > 12 ? "evening" : "morning";
 
@@ -34,7 +37,8 @@ function FacultyStudentsComp() {
 
   return (
     <div className="px-5 py-3 flex gap-4 h-full justify-center">
-      <nav className="bg-[#FC8019] rounded-3xl px-2 py-6 flex flex-col gap-20 fill-white text-white items-center h-full mr-auto">
+      <StudentPopover shown={shown} setShown={setShown} data={{}} />
+      <nav className="bg-orange-500 rounded-3xl px-2 py-6 flex flex-col gap-20 fill-white text-white items-center h-full mr-auto">
         <div id="logo">
           <a href="/">
             <img
@@ -92,7 +96,12 @@ function FacultyStudentsComp() {
                   <button>
                     <BsFileText size={24} />
                   </button>
-                  <button className="inline-flex items-center px-4 py-2 text-sm font-semibold text-center text-gray-900 bg-white border border-gray-300 rounded-lg hover:bg-gray-100 focus:ring-4 focus:outline-none focus:ring-gray-200 ml-4">
+                  <button
+                    onClick={() => {
+                      setPopupData(); // set popup data
+                      setShown(true);
+                    }}
+                    className="inline-flex items-center px-4 py-2 text-sm font-semibold text-center text-gray-900 bg-white border border-gray-300 rounded-lg hover:bg-gray-100 focus:ring-4 focus:outline-none focus:ring-gray-200 ml-4">
                     View
                   </button>
                 </Student>
@@ -135,7 +144,7 @@ function FacultyStudentsComp() {
             <div className="h-full bg-white border border-gray-200 rounded-lg shadow space-y-4 min-w-[24rem] overflow-scroll px-4 pb-4">
               <div className="flex items-center justify-between sticky top-0 bg-white pt-4 pb-2 border-b">
                 <h5 className="mb-2 text-2xl font-bold tracking-tight text-gray-900">
-                  Students
+                  Achievements
                 </h5>
                 <button className="flex items-center gap-1">
                   View all <BsArrowRight />

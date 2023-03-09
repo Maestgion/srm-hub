@@ -63,7 +63,7 @@ function FacultyResearchComp() {
 
   return (
     <div className="px-5 py-3 flex gap-4 h-full">
-      <nav className="bg-[#FC8019] rounded-3xl px-2 py-6 flex flex-col gap-20 fill-white text-white items-center h-full">
+      <nav className="bg-orange-500 rounded-3xl px-2 py-6 flex flex-col gap-20 fill-white text-white items-center h-full">
         <div id="logo">
           <a href="/">
             <svg
@@ -138,7 +138,7 @@ function FacultyResearchComp() {
                       </p>
                       <a
                         href={ongoing?.link}
-                        className="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-orange-600 rounded-lg hover:bg-orange-600 focus:ring-4 focus:outline-none focus:ring-orange-300">
+                        className="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-orange-500 rounded-lg hover:bg-orange-600 focus:ring-4 focus:outline-none focus:ring-orange-300">
                         Read more
                         <svg
                           aria-hidden="true"
@@ -182,7 +182,7 @@ function FacultyResearchComp() {
                         <div className="flex justify-between">
                           <a
                             href={previous?.link}
-                            className="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-orange-600 rounded-lg hover:bg-orange-600 focus:ring-4 focus:outline-none focus:ring-orange-300">
+                            className="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-orange-500 rounded-lg hover:bg-orange-600 focus:ring-4 focus:outline-none focus:ring-orange-300">
                             Read more
                             <svg
                               aria-hidden="true"

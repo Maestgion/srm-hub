@@ -75,7 +75,7 @@ function StudentComp() {
 
   return (
     <div className="px-5 py-3 flex gap-4 h-full">
-      <nav className="bg-[#FC8019] rounded-3xl px-2 py-6 flex flex-col gap-20 fill-white text-white items-center h-full">
+      <nav className="bg-orange-500 rounded-3xl px-2 py-6 flex flex-col gap-20 fill-white text-white items-center h-full">
         <div id="logo">
           <a href="/">
             <img
